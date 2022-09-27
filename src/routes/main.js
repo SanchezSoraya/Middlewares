@@ -2,14 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 // controller
-const mainController = require("../controllers/mainController.js");
+const mainController = require("../controllers/mainController");
+const adminController = require("../controllers/adminController");
 
-// middleware 
+//middleware 
+const adminMiddleware = require('../middlewares/adminMiddleware');
 
 //router.get()
 router.get("/", mainController.index);
 //definimos rutas de test (luego borrar)
-router.get("/milanesa", mainController.index);
-router.get("/login", mainController.index);
+router.get("/admin", adminMiddleware, adminController.admin);
 
 module.exports = router; 
